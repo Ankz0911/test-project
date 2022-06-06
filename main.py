@@ -16,7 +16,7 @@ ckeditor = CKEditor(app)
 Bootstrap(app)
 
 # CONNECT TO DB
-database_url = os.environ.get(DATABASE_URL)
+database_url = os.environ.get(POSTGRE_URL)
 if database_url != None:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(DATABASE_URL)
 else:
