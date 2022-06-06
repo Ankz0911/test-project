@@ -50,7 +50,7 @@ class Users(UserMixin,db.Model):
 
 
 
-db.create_all()
+# db.create_all()
 
 
 @login_manager.user_loader
