@@ -11,19 +11,18 @@ from flask_gravatar import Gravatar
 import os
 
 app = Flask(__name__)
-# app.config["SECRET_KEY"] = "8BYkEfBA6O6donzWlSihBXox7C0sKR6b"
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRE_URL")
-# database_url = os.environ.get(POSTGRE_URL)
-# if database_url != None:
-#     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(DATABASE_URL)
-# else:
-# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+database_url = os.environ.get("POSTGRE_URL")
+if database_url is not None:
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(DATABASE_URL)
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 login_manager = LoginManager()
