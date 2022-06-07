@@ -16,13 +16,14 @@ ckeditor = CKEditor(app)
 Bootstrap(app)
 
 # CONNECT TO DB
-
-database_url = os.environ.get("POSTGRE_URL")
-if database_url is not None:
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(DATABASE_URL)
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRE_URL")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# database_url = os.environ.get("POSTGRE_URL")
+# if database_url is not None:
+#     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(DATABASE_URL)
+# else:
+#     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
+#     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 login_manager = LoginManager()
