@@ -91,13 +91,8 @@ def register():
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        print("post initiated")
         user_name = request.form.get("email")
-        print("username received")
-        print(user_name)
-        user = Users.query.filter_by(email=user_name)
-        print(user)
-        print("username matched with db")
+        user = Users.query.filter_by(email=user_name).first()
         if check_password_hash(user.password,request.form.get("password")):
             login_user(user)
             return redirect(url_for('get_all_posts'))
